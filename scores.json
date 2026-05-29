@@ -1,0 +1,19 @@
+{
+    "Beginner": [
+        {
+            "time": 12.304,
+            "bvs": 1.788
+        },
+        {
+            "time": 30.313,
+            "bvs": 0.3959
+        },
+        {
+            "time": 31.099,
+            "bvs": 0.3859
+        }
+    ],
+    "Intermediate": [],
+    "Expert": [],
+    "Custom": []
+}

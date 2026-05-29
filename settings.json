@@ -1,0 +1,8 @@
+{
+    "width": 1080,
+    "height": 720,
+    "fullscreen": false,
+    "custom_rows": 10,
+    "custom_cols": 10,
+    "custom_mines": 15
+}
