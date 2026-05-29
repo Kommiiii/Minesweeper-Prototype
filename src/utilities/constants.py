@@ -16,6 +16,17 @@ def get_resource_path(relative_path: str) -> str:
 
     return os.path.join(base_path, relative_path)
 
+def get_save_path(filename: str) -> str:
+    """Ensures save data stays next to the .exe permanently."""
+    if getattr(sys, 'frozen', False):
+        # If running as a compiled .exe, save next to the executable
+        base_path = os.path.dirname(sys.executable)
+    else:
+        # If running in IDE, save in the project root
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        base_path = os.path.dirname(os.path.dirname(current_dir))
+
+    return os.path.join(base_path, filename)
 
 class GameConfig:
     _instance = None
@@ -36,12 +47,12 @@ class GameConfig:
             "custom_cols": 10,
             "custom_mines": 15
         }
-        path = get_resource_path(self.CONFIG_FILE)
+        path = get_save_path(self.CONFIG_FILE)
         if os.path.exists(path):
             with open(path, 'r') as f:
                 self.settings.update(json.load(f))
 
     def save(self):
-        path = get_resource_path(self.CONFIG_FILE)
+        path = get_save_path(self.CONFIG_FILE)
         with open(path, 'w') as f:
             json.dump(self.settings, f, indent=4)

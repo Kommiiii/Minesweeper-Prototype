@@ -1,6 +1,6 @@
 import os
 import json
-from src.utilities.constants import get_resource_path
+from src.utilities.constants import get_resource_path, get_save_path
 
 class ScoreManager:
     _instance = None
@@ -19,13 +19,13 @@ class ScoreManager:
             "Expert": [],
             "Custom": []
         }
-        path = get_resource_path(self.SCORE_FILE)
+        path = get_save_path(self.SCORE_FILE)
         if os.path.exists(path):
             with open(path, 'r') as f:
                 self.scores.update(json.load(f))
 
     def save(self):
-        path = get_resource_path(self.SCORE_FILE)
+        path = get_save_path(self.SCORE_FILE)
         with open(path, 'w') as f:
             json.dump(self.scores, f, indent=4)
 
